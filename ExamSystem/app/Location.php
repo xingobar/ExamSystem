@@ -1,0 +1,15 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Location extends Model
+{
+    protected  $table = 'location';
+
+    public function position()
+    {
+        return $this->hasMany(Position::class,'location_id','id');
+    }
+}
