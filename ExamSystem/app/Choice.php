@@ -13,4 +13,9 @@ class Choice extends Model
     {
         return $this->belongsTo(Questions::class,'question_id','id');
     }
+
+    public function userAnswer()
+    {
+        return $this->hasOne(UserAnswer::class,'choice_id','id');
+    }
 }

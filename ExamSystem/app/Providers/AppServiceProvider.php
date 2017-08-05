@@ -24,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\IRepository\LocationRepositoryInterface',
+                        'App\Repository\LocationRepository');
+
+        $this->app->bind('App\IService\LocationServiceInterface',
+                            'App\Service\LocationService');
     }
 }

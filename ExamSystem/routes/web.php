@@ -18,3 +18,9 @@ Route::get('/','HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+// location
+Route::get('/add_location','LocationController@create');
+Route::post('/store_location','LocationController@store');
+Route::get('/edit_location','LocationController@edit');
+Route::post('/update_location/{id}','LocationController@update');
+Route::get('/delete_location/{id}','LocationController@delete');

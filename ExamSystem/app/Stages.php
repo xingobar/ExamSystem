@@ -28,4 +28,14 @@ class Stages extends Model
         return $this->hasOne(ExamInfo::class,'stage_id','id');
     }
 
+    public function userScore()
+    {
+        return $this->hasOne(UserScore::class,'stage_id','id');
+    }
+
+    public function userAnswer()
+    {
+        return $this->hasMany(UserAnswer::class,'stage_id','id');
+    }
+
 }

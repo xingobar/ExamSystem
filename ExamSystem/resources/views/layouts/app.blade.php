@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @yield('style')
 </head>
 <body>
     <div id="app">
@@ -36,7 +38,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        &nbsp;<li><a href="/add_location">增加位置</a></li>
+                         <li><a href="/edit_location">全部顯示</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
