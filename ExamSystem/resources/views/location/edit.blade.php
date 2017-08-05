@@ -25,7 +25,7 @@
                     <tr>
                         <th scope="col">編號</th>
                         <th scope="col">位置名稱</th>
-                        <th scope="col" colspan="2"></th>
+                        <th scope="col" ></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,12 +34,10 @@
                             <th scope="row">{{$location->id}}</th>
                             <td data-title="name">{{$location->name}}</td>
                             <td data-title="edit_location">
-                                <a href="#" data-toggle="modal" data-target="#{{$location->id}}">
+                                <a href="#" data-toggle="modal" data-target="#{{$location->id}}" style="padding-right:20px;">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
                                        style="font-size: 2em;color:#bd832d"></i>
                                 </a>
-                            </td>
-                            <td data-title="delete_location">
                                 <a href="/delete_location/{{$location->id}}">
                                     <i class="fa fa-trash-o" aria-hidden="true" style="font-size:2em;color:#b78282"></i>
                                 </a>

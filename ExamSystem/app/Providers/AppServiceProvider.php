@@ -29,5 +29,11 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('App\IService\LocationServiceInterface',
                             'App\Service\LocationService');
+
+        $this->app->bind('App\IRepository\PositionRepositoryInterface',
+                            'App\Repository\PositionRepository');
+
+        $this->app->bind('App\IService\PositionServiceInterface',
+                            'App\Service\PositionService');
     }
 }

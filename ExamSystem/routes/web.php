@@ -24,3 +24,8 @@ Route::post('/store_location','LocationController@store');
 Route::get('/edit_location','LocationController@edit');
 Route::post('/update_location/{id}','LocationController@update');
 Route::get('/delete_location/{id}','LocationController@delete');
+
+
+// position
+Route::get('/add_position','PositionController@create');
+Route::post('/store_position','PositionController@store');

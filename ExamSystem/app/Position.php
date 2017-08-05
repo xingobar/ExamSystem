@@ -8,6 +8,9 @@ class Position extends Model
 {
      protected $table = 'position';
 
+
+     protected $fillable = ['name','location_id'];
+
      public function stage()
      {
          return $this->hasMany(Stages::class,'position_id','id');
