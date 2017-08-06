@@ -12,4 +12,7 @@ namespace App\IService;
 interface PositionServiceInterface
 {
     public function insertPosition($request);
+    public function getAllPosition();
+    public function deleteById($id);
+    public function update($id,$request);
 }

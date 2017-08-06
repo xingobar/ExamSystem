@@ -30,6 +30,26 @@ class PositionService implements PositionServiceInterface
 
     public function insertPosition($request)
     {
+        if($this->positionRepo->getPositionCountByLocationAndName($request['location_id'],$request['name'])){
+            return false;
+        }
         $this->positionRepo->insertPosition($request);
+        return true;
+    }
+
+    public function getAllPosition()
+    {
+        return $this->positionRepo->getAllPositin();
+    }
+
+    public function deleteById($id)
+    {
+        $this->positionRepo->deleteById($id);
+    }
+
+
+    public function update($id, $request)
+    {
+        $this->positionRepo->update($id,$request);
     }
 }

@@ -32,4 +32,28 @@ class PositionRepository implements PositionRepositoryInterface
         $position = new Position($request);
         $position->save();
     }
+
+    public function getPositionCountByLocationAndName($locationId, $name)
+    {
+        return $this->position->where('location_id',$locationId)
+                        ->where('name',$name)
+                        ->count();
+    }
+
+    public function getAllPositin()
+    {
+        return $this->position->orderBy('created_at','asc')->get();
+    }
+
+    public function deleteById($id)
+    {
+        $this->position->destroy($id);
+    }
+
+    public function update($id,$request)
+    {
+        $position = $this->position->findOrFail($id);
+        $position->fill($request);
+        $position->save();
+    }
 }

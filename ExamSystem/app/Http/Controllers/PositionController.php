@@ -9,7 +9,10 @@ use App\IService\PositionServiceInterface;
 
 class PositionController extends Controller
 {
-
+    /**
+     * @var PositionServiceInterface $positionService
+     *
+     */
     private $positionService;
 
     /**
@@ -33,7 +36,33 @@ class PositionController extends Controller
 
     public function store(Request $request)
     {
-        $this->positionService->insertPosition($request->all());
-        return redirect()->back()->withErrors(['msg'=>'success']);
+        $success = $this->positionService->insertPosition($request->all());
+        if($success){
+            return redirect()->back()->withErrors(['msg'=>'success']);
+        }
+        return redirect()->back()->withErrors(['msg'=>'error']);
+    }
+
+    public function edit()
+    {
+        $positions = $this->positionService->getAllPosition();
+        $locationRepo = RepositoryFactory::getLocationRepository();
+        $locations = $locationRepo->getAllLocation();
+        return view('position.edit',[
+            'positions'=>$positions,
+            'locations'=>$locations
+        ]);
+    }
+
+    public function update($id,Request $request)
+    {
+        $this->positionService->update($id,$request->all());
+        return redirect()->back()->withErrors(['msg'=>'update_success']);
+    }
+
+    public function delete($id)
+    {
+        $this->positionService->deleteById($id);
+        return redirect()->back()->withErrors(['msg'=>'delete_success']);
     }
 }

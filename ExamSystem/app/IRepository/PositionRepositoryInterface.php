@@ -12,4 +12,8 @@ namespace App\IRepository;
 interface PositionRepositoryInterface
 {
     public function insertPosition($request);
+    public function getPositionCountByLocationAndName($locationId,$name);
+    public function getAllPositin();
+    public function deleteById($id);
+    public function update($id,$request);
 }
