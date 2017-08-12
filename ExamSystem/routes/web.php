@@ -32,3 +32,8 @@ Route::post('/store_position','PositionController@store');
 Route::get('/edit_position','PositionController@edit');
 Route::get('/delete_position/{id}','PositionController@delete');
 Route::post('/update_position/{id}','PositionController@update');
+
+
+//stage
+Route::get('/add_stage','StageController@stageCreate');
+Route::post('/store_stage','StageController@stageStore');

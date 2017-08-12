@@ -12,6 +12,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
 use Mockery;
 use Session;
+use App;
 
 class LocationTest extends TestCase
 {
@@ -21,6 +22,8 @@ class LocationTest extends TestCase
      *
      */
     protected $repositoryMock = null;
+    protected $repo = null;
+    protected $model = null;
 
     /**
      *  test edit location view whether locations vairable exist or not
@@ -52,7 +55,10 @@ class LocationTest extends TestCase
 
         // Mockery mock 利用 reflection 機制建立假物件
         $this->repositoryMock = Mockery::mock('App\Service\LocationService');
+        $this->model = Mockery::mock('\App\Location');
 
+   //     $this->repo = App::make('\App\Repository\LocationRepository',array($this->model));
+        //$this->repositoryMock = new App\Service\LocationService($this->repo);
         // 用假物件來取代我們原本的 LocationRepository 物件
         $this->app->instance('App\Service\LocationService', $this->repositoryMock);
 
@@ -114,11 +120,31 @@ class LocationTest extends TestCase
 
 
         // 模擬送出表單
-        $response = $this->call('POST','/store_location',$data);
+        //$response = $this->call('POST','/store_location',$data);
 
         // http code 302 is redirect
-        $response->assertStatus(302);
+        //$response->assertStatus(302);
         //$response->assertRedirect('/');
     }
 
+
+   /* public function testUpdateLocation()
+    {
+        Session::start();
+
+        $data = array('id'=> '5','request'=>[
+           'name'=> 'test',
+           '_token' => csrf_token()
+        ]);
+
+        $this->repositoryMock
+             ->shouldReceive('updateLocationNameById')
+             ->with($data)
+             ->once();
+
+
+        $response = $this->call('POST','/update_location/5',$data);
+
+        $response->assertStatus(200);
+    }*/
 }

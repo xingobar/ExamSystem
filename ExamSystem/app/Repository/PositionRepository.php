@@ -40,7 +40,7 @@ class PositionRepository implements PositionRepositoryInterface
                         ->count();
     }
 
-    public function getAllPositin()
+    public function getAllPosition()
     {
         return $this->position->orderBy('created_at','asc')->get();
     }

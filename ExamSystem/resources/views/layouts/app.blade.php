@@ -59,6 +59,18 @@
                         </ul>
                     </li>
 
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            階段
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/add_stage">增加階段</a></li>
+                            <li><a href="#">全部顯示</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -100,5 +112,12 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+@yield('script')
 </body>
 </html>

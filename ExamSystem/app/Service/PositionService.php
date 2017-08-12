@@ -39,7 +39,7 @@ class PositionService implements PositionServiceInterface
 
     public function getAllPosition()
     {
-        return $this->positionRepo->getAllPositin();
+        return $this->positionRepo->getAllPosition();
     }
 
     public function deleteById($id)

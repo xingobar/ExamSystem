@@ -8,6 +8,8 @@ class Stages extends Model
 {
     protected  $table = 'stages';
 
+    protected $fillable = ['name','position_id','stage'];
+
     public function position()
     {
         return $this->belongsTo(Position::class,'position_id','id');
