@@ -12,8 +12,8 @@ namespace App\Service;
 use App\IRepository\StageRepositoryInterface;
 use App\IService\StageServiceInterface;
 use DB;
-use Illuminate\Database\QueryException;
 use Log;
+use Mockery\Exception;
 
 class StageService implements StageServiceInterface
 {
@@ -29,32 +29,34 @@ class StageService implements StageServiceInterface
     }
 
 
-    public function insert($nameArray,$positionId)
+    public function insert($data)
     {
-        $count = 1;
+        $success = true;
 
         //start transaction
         DB::beginTransaction();
 
-        foreach ($nameArray as $name)
-        {
-            try{
-                $this->stageRepo->insert($name,$positionId, $count);
-                $count += 1;
-            }catch (QueryException $queryException){
-                Log::info($queryException->getMessage());
-                break;
-            }
-            catch(Exception $exception){
-                Log::info($exception->getMessage());
-                break;
-            }
+        try{
 
+            global $success;
+
+            $success = $this->stageRepo->insert($data);
+
+        }catch(Exception $exception)
+        {
+            DB::rollback();
+            $success = false;
+            throw new Exception('insert data error');
         }
 
-        // commit the query
-        DB::commit();
-        return redirect()->to('/add_stage')->withErrors(['msg'=>'success']);
+        if($success)
+        {
+            // commit the query
+            DB::commit();
+        }
+        return $success;
+
     }
+
 
 }

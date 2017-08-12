@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\IService\StageServiceInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateStageRequest;
 use RepositoryFactory;
 use Log;
 
@@ -36,8 +37,15 @@ class StageController extends Controller
 
     public function stageStore(Request $request)
     {
-        $name = $request->input('name');
-        $positionId = $request->input('position_id');
-        $this->stageService->insert($name,$positionId);
+         $data =$request->input('data');
+         $success = $this->stageService->insert($data);
+
+         if($success)
+         {
+             return redirect()->back()->withErrors(['msg'=>'success']);
+         }else{
+             return redirect()->back()->withErrors(['msg'=>'error']);
+         }
+         Log::info($request->input('data'));
     }
 }

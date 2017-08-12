@@ -11,5 +11,5 @@ namespace App\IService;
 
 interface StageServiceInterface
 {
-    public function insert($nameArray,$positionId);
+    public  function insert($data);
 }

@@ -11,5 +11,6 @@ namespace App\IRepository;
 
 interface StageRepositoryInterface
 {
-    public function insert($name,$position_id,$stageId);
+    public function insert($dataArray);
+    public function getStageIdByPosition($positionId);
 }

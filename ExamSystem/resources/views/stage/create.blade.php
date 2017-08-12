@@ -39,16 +39,30 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3" style="padding-left: 10px;">
+                                        <label for="name" class="control-label col-md-2">階段</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" value="" name="name">
+                                        </div>
+                                        <label for="score" class="control-label  col-md-2">分數</label>
+                                        <div class="col-md-4">
+                                            <input type="number" class="form-control" value="" name="score">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                         <div class="row">
                             <div class="col-md-offset-4 col-md-2">
-                                <button type="button" class="btn btn-success btn-block submit">提交</button>
+                                <button type="button" class="btn btn-success btn-block submit" onclick="postData()">提交</button>
                             </div>
                             <div class="col-md-2">
-                                <button type="button"  class="btn btn-info btn-block" id="add_stage">新增一列</button>
+                                <button type="button"  class="btn btn-info btn-block" id="add_stage" onclick="addStage()">新增一列</button>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-danger btn-block">刪除一列</button>
+                                <button type="button" class="btn btn-danger btn-block" onclick="deleteStageRow()">刪除一列</button>
                             </div>
                         </div>
                     </div>

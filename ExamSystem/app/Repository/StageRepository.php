@@ -13,6 +13,7 @@ use App\IRepository\StageRepositoryInterface;
 use App\Stages;
 use DB;
 use Illuminate\Database\QueryException;
+use Log;
 
 class StageRepository implements StageRepositoryInterface
 {
@@ -28,26 +29,29 @@ class StageRepository implements StageRepositoryInterface
     }
 
 
-    public function insert($name,$position_id,$stageId)
+    public function insert($dataArray)
     {
         try{
-            $stage = Stages::create([
-                'name'=>$name,
-                'stage'=>$stageId,
-                'position_id'=>$position_id
-            ]);
 
-            if(!$stage){
-                DB::rollback();
-                throw new \Exception('Stage created fail');
-            }
+            Stages::insert($dataArray);
+
         }catch(QueryException $queryException) {
-            DB::rollback();
             throw new \Exception('Stage data does not provide');
+            Log::error('Stage data does not provide');
+            return false;
         }catch (\Exception $exception){
-            DB::rollback();
             throw new \Exception('Stage created fail');
+            Log::error('Stage created fail');
+            return false;
         }
+        return true;
 
     }
+
+    public function getStageIdByPosition($positionId)
+    {
+        $stage = Stages::where('position_id',$positionId)->take(1)->get();
+        return $stage->stage;
+    }
+
 }
