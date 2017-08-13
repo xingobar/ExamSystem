@@ -16,4 +16,5 @@ interface StageServiceInterface
     public function getStageById($id);
     public function updateStageById($request,$id);
     public function deleteById($id);
+    public function getStageByPositionId($id);
 }

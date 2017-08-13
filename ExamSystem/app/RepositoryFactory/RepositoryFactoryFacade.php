@@ -13,11 +13,14 @@ use App\Position;
 use App\Repository\LocationRepository;
 use App\Location;
 use App\Repository\PositionRepository;
+use App\Repository\StageStatusRepository;
+use App\StageStatus;
 
 class RepositoryFactoryFacade
 {
     protected $_locationRepo = null;
-    private $_positionRepo = null;
+    protected $_positionRepo = null;
+    protected $_stageStatusRepo = null;
 
     public function getLocationRepository()
     {
@@ -35,5 +38,14 @@ class RepositoryFactoryFacade
             $_positionRepo = new PositionRepository(new Position());
         }
         return $_positionRepo;
+    }
+
+    public function getStageStatusRepository()
+    {
+        if(!isset($_stageStatusRepo))
+        {
+            $_stageStatusRepo = new StageStatusRepository(new StageStatus());
+        }
+        return $_stageStatusRepo;
     }
 }

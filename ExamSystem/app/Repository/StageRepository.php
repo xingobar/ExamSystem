@@ -70,4 +70,9 @@ class StageRepository implements StageRepositoryInterface
     }
 
 
+    public function getStageByPositionId($positionId)
+    {
+        return $this->stage->where('position_id',$positionId)->get();
+    }
+
 }

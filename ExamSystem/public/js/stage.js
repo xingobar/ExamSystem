@@ -103,6 +103,7 @@ function deleteStageRow() {
 
 function getPositionByLocation(element) {
     var locationId = $(element).val();
+    $("select[name='position_id'] option ").remove();
     $.ajax({
         url: '/get_position_by_location/' + locationId,
         type: 'get',
@@ -112,7 +113,6 @@ function getPositionByLocation(element) {
                 option = $(option).attr("value", position.id);
                 option = $(option).text(position.name);
                 console.log(option[0]);
-                $("select[name='position_id'] option ").remove();
                 $("select[name='position_id']").append(option[0]);
             });
         }

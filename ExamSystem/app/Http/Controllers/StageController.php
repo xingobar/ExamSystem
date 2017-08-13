@@ -25,6 +25,9 @@ class StageController extends Controller
         $this->stageService = $stageService;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function stageCreate()
     {
         $positionRepo = RepositoryFactory::getPositionRepository();
@@ -39,6 +42,10 @@ class StageController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return $this
+     */
     public function stageStore(Request $request)
     {
         $data = $request->input('data');
@@ -52,6 +59,9 @@ class StageController extends Controller
         Log::info($request->input('data'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function stageEdit()
     {
         $stages = $this->stageService->getAllStage();
@@ -63,6 +73,11 @@ class StageController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return $this
+     */
     public function stageUpdate(Request $request, $id)
     {
         $success = $this->stageService->updateStageById($request->all(), $id);
@@ -73,6 +88,10 @@ class StageController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @return $this
+     */
     public function stageDelete($id)
     {
         $success = $this->stageService->deleteById($id);
@@ -81,5 +100,44 @@ class StageController extends Controller
         } else {
             return redirect()->back()->withErrors(['msg' => 'error']);
         }
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function stageStatusCreate()
+    {
+        $positionRepo = RepositoryFactory::getPositionRepository();
+        $locationRepo = RepositoryFactory::getLocationRepository();
+
+        $locations = $locationRepo->getAllLocation();
+        $positions = $positionRepo->getPositionByLocation($locations[0]['id']);
+        $stages = $this->stageService->getStageByPositionId($positions[0]['id']);
+
+        return view('stage_status.create',[
+            'stages'=>$stages,
+            'positions'=>$positions,
+            'locations'=>$locations
+        ]);
+    }
+
+    public function stageStatusStore(Request $request)
+    {
+        $stageStatusRepo = RepositoryFactory::getStageStatusRepository();
+        $success = $stageStatusRepo->insert($request->except(['location','position_id','_token']));
+        if ($success) {
+            return redirect()->back()->withErrors(['msg' => 'success']);
+        } else {
+            return redirect()->back()->withErrors(['msg' => 'error']);
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getStageByPositionId($id)
+    {
+        return $this->stageService->getStageByPositionId($id);
     }
 }

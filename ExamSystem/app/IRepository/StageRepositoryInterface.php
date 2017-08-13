@@ -16,4 +16,5 @@ interface StageRepositoryInterface
     public function getAllStage();
     public function getStageById($id);
     public function deleteById($id);
+    public function getStageByPositionId($positionId);
 }

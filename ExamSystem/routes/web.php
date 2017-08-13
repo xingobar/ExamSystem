@@ -41,3 +41,9 @@ Route::post('/store_stage','StageController@stageStore');
 Route::get('/edit_stage','StageController@stageEdit');
 Route::post('/update_stage/{id}','StageController@stageUpdate');
 Route::get('/delete_stage/{id}','StageController@stageDelete');
+Route::get('/get_stage_by_position/{id}','StageController@getStageByPositionId');
+
+
+// stage status
+Route::get('/add_stage_status','StageController@stageStatusCreate');
+Route::post('/store_stage_status','StageController@stageStatusStore');

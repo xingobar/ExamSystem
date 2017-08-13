@@ -13,7 +13,6 @@ use App\IRepository\StageRepositoryInterface;
 use App\IService\StageServiceInterface;
 use DB;
 use Log;
-use Mockery\Exception;
 
 class StageService implements StageServiceInterface
 {
@@ -43,17 +42,22 @@ class StageService implements StageServiceInterface
             $data = $this->checkStageId($data, $data[0]['position_id']);
             $success = $this->stageRepo->insert($data);
 
+            if($success)
+            {
+                // commit the query
+                DB::commit();
+            }
+
         } catch (\Exception $exception) {
             DB::rollback();
             $success = false;
             //throw new \Exception('insert data error');
             throw new \Exception($exception->getMessage());
+        }catch(\Throwable $throwable)
+        {
+            throw $throwable;
         }
 
-        if ($success) {
-            // commit the query
-            DB::commit();
-        }
         return $success;
 
     }
@@ -133,6 +137,11 @@ class StageService implements StageServiceInterface
         }
 
         return $success;
+    }
+
+    public function getStageByPositionId($id)
+    {
+        return $this->stageRepo->getStageByPositionId($id);
     }
 
 

@@ -76,6 +76,18 @@
                         </ul>
                     </li>
 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            階段名稱
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/add_stage_status">增加階段名稱</a></li>
+                            <li><a href="/edit_stage">全部顯示</a></li>
+                        </ul>
+                    </li>
+
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
