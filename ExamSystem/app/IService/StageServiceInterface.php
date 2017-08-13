@@ -12,4 +12,8 @@ namespace App\IService;
 interface StageServiceInterface
 {
     public  function insert($data);
+    public function getAllStage();
+    public function getStageById($id);
+    public function updateStageById($request,$id);
+    public function deleteById($id);
 }

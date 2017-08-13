@@ -32,8 +32,12 @@ Route::post('/store_position','PositionController@store');
 Route::get('/edit_position','PositionController@edit');
 Route::get('/delete_position/{id}','PositionController@delete');
 Route::post('/update_position/{id}','PositionController@update');
+Route::get('/get_position_by_location/{id}','PositionController@getPositionByLocation');
 
 
 //stage
 Route::get('/add_stage','StageController@stageCreate');
 Route::post('/store_stage','StageController@stageStore');
+Route::get('/edit_stage','StageController@stageEdit');
+Route::post('/update_stage/{id}','StageController@stageUpdate');
+Route::get('/delete_stage/{id}','StageController@stageDelete');

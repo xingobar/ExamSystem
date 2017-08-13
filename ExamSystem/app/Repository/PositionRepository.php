@@ -56,4 +56,11 @@ class PositionRepository implements PositionRepositoryInterface
         $position->fill($request);
         $position->save();
     }
+
+    public function getPositionByLocation($locationId)
+    {
+        return $this->position->where('location_id',$locationId)->get();
+    }
+
+
 }

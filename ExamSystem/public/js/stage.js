@@ -19,9 +19,10 @@ function ajaxSetup() {
 }
 
 var count = 1;
+
 function addStage() {
 
-    var template= " <div class=\"form-group\">\n" +
+    var template = " <div class=\"form-group\">\n" +
         "                                <div class=\"row\">\n" +
         "                                    <div class=\"col-md-6 col-md-offset-3\" style=\"padding-left: 10px;\">\n" +
         "                                        <label for=\"name\" class=\"control-label col-md-2\">階段</label>\n" +
@@ -53,18 +54,18 @@ function pushData() {
     var scoreLength = $(scoreArray).length;
     var positionId = $("select[name='position_id']").val();
 
-    if(nameLength !== scoreLength){
+    if (nameLength !== scoreLength) {
         console.log('error');
         return;
-    }else{
-        for(var index = 0 ; index < nameLength ; index++){
-            stageObj  = {};
-            if( ( $(array[index]).val() != "" )  &&  ( $(scoreArray[index]).val() != "" )  ){
+    } else {
+        for (var index = 0; index < nameLength; index++) {
+            stageObj = {};
+            if (( $(array[index]).val() != "" ) && ( $(scoreArray[index]).val() != "" )) {
                 stageObj.name = $(array[index]).val();
                 stageObj.pass_score = $(scoreArray[index]).val();
                 stageObj.position_id = positionId;
                 stageObj.stage = stageId;
-                stageId +=1;
+                stageId += 1;
                 data.push(stageObj);
             }
         }
@@ -73,27 +74,47 @@ function pushData() {
 
 function postData() {
     pushData();
-    if(data.length === 0){
-        return ;
+    if (data.length === 0) {
+        return;
     }
     $.ajax({
-        url:'/store_stage',
-        type:'post',
-        async:false,
-        data:{
-            data:data
+        url: '/store_stage',
+        type: 'post',
+        async: false,
+        data: {
+            data: data
         },
-        success:function (data) {
-            $("#app").html(data);
+        success: function (html) {
+            $("#app").html(html);
+            data = [];
+            ajaxSetup();
             console.log('success');
         },
-        error:function (data) {
+        error: function (data) {
             console.log('error');
         }
     });
 }
 
-function deleteStageRow(){
+function deleteStageRow() {
     var lastRow = $('.form-group').last();
     $(lastRow).remove();
+}
+
+function getPositionByLocation(element) {
+    var locationId = $(element).val();
+    $.ajax({
+        url: '/get_position_by_location/' + locationId,
+        type: 'get',
+        success: function (data) {
+            data.forEach(function (position) {
+                var option = "<option></option>";
+                option = $(option).attr("value", position.id);
+                option = $(option).text(position.name);
+                console.log(option[0]);
+                $("select[name='position_id'] option ").remove();
+                $("select[name='position_id']").append(option[0]);
+            });
+        }
+    })
 }

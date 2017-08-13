@@ -65,4 +65,10 @@ class PositionController extends Controller
         $this->positionService->deleteById($id);
         return redirect()->back()->withErrors(['msg'=>'delete_success']);
     }
+
+    public function getPositionByLocation($locationId)
+    {
+        return $this->positionService->getPositionByLocation($locationId);
+    }
+
 }

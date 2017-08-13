@@ -15,4 +15,5 @@ interface PositionServiceInterface
     public function getAllPosition();
     public function deleteById($id);
     public function update($id,$request);
+    public function getPositionByLocation($locationId);
 }

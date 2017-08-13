@@ -50,8 +50,24 @@ class StageRepository implements StageRepositoryInterface
 
     public function getStageIdByPosition($positionId)
     {
-        $stage = Stages::where('position_id',$positionId)->take(1)->get();
-        return $stage->stage;
+        $stages = Stages::where('position_id',$positionId)->orderBy('id','desc')->first();
+        return $stages['stage'];
     }
+
+    public function getAllStage()
+    {
+        return $this->stage->orderBy('id','asc')->get();
+    }
+
+    public function getStageById($id)
+    {
+       return $this->stage->findOrFail($id);
+    }
+
+    public function deleteById($id)
+    {
+        $this->stage->destroy($id);
+    }
+
 
 }

@@ -13,6 +13,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     @yield('style')
 </head>
 <body>
@@ -67,7 +72,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="/add_stage">增加階段</a></li>
-                            <li><a href="#">全部顯示</a></li>
+                            <li><a href="/edit_stage">全部顯示</a></li>
                         </ul>
                     </li>
 
@@ -117,7 +122,6 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 @yield('script')
 </body>
 </html>

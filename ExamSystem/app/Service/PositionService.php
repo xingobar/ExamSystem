@@ -52,4 +52,10 @@ class PositionService implements PositionServiceInterface
     {
         $this->positionRepo->update($id,$request);
     }
+
+
+    public function getPositionByLocation($locationId)
+    {
+        return $this->positionRepo->getPositionByLocation($locationId);
+    }
 }

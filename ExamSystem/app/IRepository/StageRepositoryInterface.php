@@ -13,4 +13,7 @@ interface StageRepositoryInterface
 {
     public function insert($dataArray);
     public function getStageIdByPosition($positionId);
+    public function getAllStage();
+    public function getStageById($id);
+    public function deleteById($id);
 }

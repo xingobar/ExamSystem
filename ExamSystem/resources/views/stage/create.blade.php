@@ -27,8 +27,18 @@
                         新增階段
                     </div>
                     <div class="panel-body">
-                        <form  class="form-horizontal">
+                        <form class="form-horizontal">
                             {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="location" class="control-label col-md-offset-2 col-md-2">地點</label>
+                                <div class="col-md-5">
+                                    <select name="location" class="form-control" id="" onchange="getPositionByLocation(this)">
+                                        @foreach($locations as $location)
+                                            <option value="{{$location->id}}">{{$location->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="position_id" class="control-label col-md-offset-2 col-md-2">職位</label>
                                 <div class="col-md-5">
@@ -56,13 +66,17 @@
                         </form>
                         <div class="row">
                             <div class="col-md-offset-4 col-md-2">
-                                <button type="button" class="btn btn-success btn-block submit" onclick="postData()">提交</button>
+                                <button type="button" class="btn btn-success btn-block submit" onclick="postData()">提交
+                                </button>
                             </div>
                             <div class="col-md-2">
-                                <button type="button"  class="btn btn-info btn-block" id="add_stage" onclick="addStage()">新增一列</button>
+                                <button type="button" class="btn btn-info btn-block" id="add_stage"
+                                        onclick="addStage()">新增一列
+                                </button>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-danger btn-block" onclick="deleteStageRow()">刪除一列</button>
+                                <button type="button" class="btn btn-danger btn-block" onclick="deleteStageRow()">刪除一列
+                                </button>
                             </div>
                         </div>
                     </div>
