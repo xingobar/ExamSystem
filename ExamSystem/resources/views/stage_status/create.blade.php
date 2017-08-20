@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label for="position_id" class="control-label col-md-offset-2 col-md-2">職位</label>
                                 <div class="col-md-5">
-                                    <select name="position_id" class="form-control" onchange="getPositionByLocation(this)">
+                                    <select name="position_id" class="form-control" onchange="getStageByPosition(this)" >
                                         @foreach($positions as $position)
                                             <option value="{{$position->id}}">{{$position->name}}</option>
                                         @endforeach
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label for="stage_id" class="control-label col-md-2 col-md-offset-2">階段</label>
                                 <div class="col-md-5">
-                                    <select name="stage_id" class="form-control" id="" onchange="getStageByPosition(this)">
+                                    <select name="stage_id" class="form-control" id="" >
                                         @foreach($stages as $stage)
                                             <option value="{{$stage->id}}">{{$stage->name}}</option>
                                         @endforeach

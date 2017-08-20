@@ -30,14 +30,13 @@ function getPositionByLocation(element){
                 option = $(option).text(position.name);
                 $(positionSelect).append(option);
             });
+
+            getStageByPosition($("select[name = 'position_id']"));
         },
         error:function () {
             console.log("error");
         }
     });
-
-    getStageByPosition($("select[name = 'position_id']"));
-
 }
 
 function getStageByPosition(element){
@@ -47,7 +46,6 @@ function getStageByPosition(element){
         type:'get',
         async:false,
         success:function (data) {
-            console.log(data);
             var stageSelect = $("select[name='stage_id']");
             $(stageSelect).find('option').remove();
             data.forEach(function(stage){

@@ -132,6 +132,17 @@ class StageController extends Controller
         }
     }
 
+    public function stageStatusEdit()
+    {
+        return view('stage_status.edit');
+    }
+
+    public function stageStatusUpdate(Request $request)
+    {
+        return true;
+    }
+
+
     /**
      * @param int $id
      * @return mixed
